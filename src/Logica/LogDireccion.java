@@ -23,10 +23,12 @@ public class LogDireccion {
         ResultSet rs = objDatDireccion.RecuperarDireccion();
         while (rs.next()){
             direccion = new Direccion();
-            direccion.setNumero(rs.getString(1));
-            direccion.setCalle1(rs.getString(2));
-            direccion.setCalle2(rs.getString(3));
-            direccion.setActual(rs.getInt(4));
+            direccion.setId(rs.getInt(1));
+            direccion.setNumero(rs.getString(2));
+            direccion.setCalle1(rs.getString(3));
+            direccion.setCalle2(rs.getString(4));
+            direccion.setActual(rs.getInt(5));
+            direccion.setIdCliente(rs.getInt(6));
             arrayDireccion.add(direccion);
         }
     }
@@ -39,6 +41,26 @@ public class LogDireccion {
 
         }
         return false;
+    }
+
+    public void BuscarDireccionesCliente(Cliente cliente, ArrayList<Direccion> arrayDireccion) throws SQLException, ClassNotFoundException {
+
+        Direccion direccion;
+        Cliente c = cliente;
+
+        ResultSet rs = objDatDireccion.BuscarDireccionPorCliente(c);
+        while (rs.next()) {
+            direccion = new Direccion();
+            direccion.setId(rs.getInt(1));
+            direccion.setCalle1(rs.getString(2));
+            direccion.setCalle2(rs.getString(3));
+            direccion.setNumero(rs.getString(4));
+            direccion.setActual(rs.getInt(5));
+            direccion.setIdCliente(rs.getInt(6));
+
+            arrayDireccion.add(direccion);
+        }
+        rs.close();
 
     }
 }

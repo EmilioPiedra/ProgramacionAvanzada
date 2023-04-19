@@ -3,10 +3,7 @@ package Logica;
 import BaseDatos.BDCliente;
 import BaseDatos.Conexion;
 import Clases.Cliente;
-import Clases.Direccion;
-import com.mysql.cj.util.DnsSrv;
 
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,9 +26,10 @@ public class LogCliente {
         ResultSet rs = objBDCliente.RecuperarClientes();
         while (rs.next()){
             objCliente = new Cliente();
-            objCliente.setCedula(rs.getString(1));
-            objCliente.setNombre(rs.getString(2));
-            objCliente.setApellidos(rs.getString(3));
+            objCliente.setId(rs.getInt(1));
+            objCliente.setCedula(rs.getString(2));
+            objCliente.setNombre(rs.getString(3));
+            objCliente.setApellidos(rs.getString(4));
             arrayClientes.add(objCliente);
         }
 
@@ -48,5 +46,16 @@ public class LogCliente {
         return false;
 
     }
+    public int RecuperarMAXClientes(Cliente objCliente) throws SQLException, ClassNotFoundException {
+        ResultSet rs = objBDCliente.maxID(objCliente);
+        while (rs.next()) {
+            objCliente = new Cliente();
+            objCliente.setId((Integer.parseInt(rs.getString(1))));
+            objCliente.g.add(objCliente);
+        }
+        return objCliente.getId();
+    }
+
+
 
 }

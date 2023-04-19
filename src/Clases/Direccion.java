@@ -1,19 +1,46 @@
 package Clases;
 
 public class Direccion {
+    public static int id= 0 ;
     public String numero;
     public String calle1;
     public String calle2;
     public int actual;
-
+    public int idCliente;
     public Direccion() {
     }
 
-    public Direccion(String numero, String calle1, String calle2, int actual) {
+    public Direccion(int id, String numero, String calle1, String calle2, int actual, int idCliente) {
+        this.id = id ++;
         this.numero = numero;
         this.calle1 = calle1;
         this.calle2 = calle2;
         this.actual = actual;
+        this.idCliente = idCliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public Direccion(int id, String numero, String calle1, String calle2, int actual) {
+        this.id = id;
+        this.numero = numero;
+        this.calle1 = calle1;
+        this.calle2 = calle2;
+        this.actual = actual;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNumero() {
@@ -50,7 +77,13 @@ public class Direccion {
 
     @Override
     public String toString() {
-        return "Direccion{" + "numero=" + numero + ", calle1=" + calle1 + ", calle2=" + calle2 + ", actual=" + actual + '}';
+        return "Direccion{" +
+                "id=" + id +
+                ", numero='" + numero + '\'' +
+                ", calle1='" + calle1 + '\'' +
+                ", calle2='" + calle2 + '\'' +
+                ", actual=" + actual +
+                ", idCliente=" + idCliente +
+                '}';
     }
-
 }

@@ -3,18 +3,30 @@ package Clases;
 import java.util.ArrayList;
 
 public class Cliente {
-    int id;
+    static int id=0;
     String Cedula;
     String Nombres;
     String Apellidos;
     ArrayList <Direccion> direcciones = new ArrayList<Direccion>();
     public Cliente() {
     }
-    public Cliente(String cedula, String nombres, String apellidos) {
-        this.Cedula = cedula;
-        this.Nombres = nombres;
-        this.Apellidos = apellidos;
+
+    public void setId(int id) {
+        this.id = id;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public Cliente(int id,String cedula, String nombres, String apellidos, ArrayList<Direccion> direcciones) {
+        id = id++;
+        Cedula = cedula;
+        Nombres = nombres;
+        Apellidos = apellidos;
+        this.direcciones = direcciones;
+    }
+
     public String getCedula() {
         return Cedula;
     }
@@ -43,9 +55,11 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "Cedula='" + Cedula + '\'' +
-                ", Nombre='" + Nombres + '\'' +
+                "id=" + id +
+                ", Cedula='" + Cedula + '\'' +
+                ", Nombres='" + Nombres + '\'' +
                 ", Apellidos='" + Apellidos + '\'' +
+                ", direcciones=" + direcciones +
                 '}';
     }
 }
